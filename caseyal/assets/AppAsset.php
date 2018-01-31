@@ -19,11 +19,29 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/site.css',
+        'css/sidebar.css',
     ];
     public $js = [
+        
+        'js/api/go-debug.js',
+        //'js/api/go.js',
+        'js/api/socket.io.js',
+
+        'js/modelos/templateLink.js',
+        'js/modelos/templateTable.js',
+        'js/modelos/csTabla.js',
+        'js/modelos/trama.js',
+
+        'js/restclient/restTabla.js',
+        'js/diagramador.js',
+        'js/Constantes.js',
+        'js/principal.js',
+        'js/chatOnline.js',
+
     ];
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
     ];
 }
+
