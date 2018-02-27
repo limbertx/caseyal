@@ -43,3 +43,31 @@ function chat_joinToProjecto(){
 		socket.emit(TipoTrama_JOIN, JSON.stringify(t));
 	}
 }
+
+/**
+*Metodo que envia las coordenadas de la tabla donde se movio
+* coordenada : recibe un objeto punto
+*/
+
+function sendCoordenadas(coordenada, idtabla){
+
+	let username = $("#diagram-edit-username").val();
+	let proyecto = $("#diagram-edit-project").val();
+
+	let message = JSON.stringify({
+									x: coordenada.L, 
+									y: coordenada.M, 
+									pkTabla: idtabla});
+	console.log("punto a enviar : " + message);
+	let t = new trama(TipoTrama_Coordenada, message, proyecto, username);
+	
+    socket.emit(TipoTrama_Coordenada, JSON.stringify(t));
+
+}
+
+function adicionarNuevaTabla(pto){
+	let username = $("#diagram-edit-username").val();
+	let proyecto = $("#diagram-edit-project").val();
+	let tabla = new Tabla(generateUID(), "tabla1", 1, "", 1, pto);
+	
+}

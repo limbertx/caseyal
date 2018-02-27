@@ -2,17 +2,22 @@
 var gj;
 var myDiagram;
 
+
+ 
 function iniciarDiagrama(){  
   gj = go.GraphObject.make;
   myDiagram = gj(go.Diagram, 'myDiagrama',{
-    // centra todos los diagrmas
-    //initialContentAlignment: go.Spot.Center,
-    "undoManager.isEnabled": false, // deshabilitado el ctrl-z
-    allowDelete: false,
-    allowCopy: false,
-    // forza para que no haya cruce de nodos y relaciones
-    layout: gj(go.ForceDirectedLayout),
-  });
+                      // centra todos los diagrmas
+                      //initialContentAlignment: go.Spot.Center,
+                      "undoManager.isEnabled": false, // deshabilitado el ctrl-z
+                      allowDelete: false,
+                      allowCopy: false,
+                      // forza para que no haya cruce de nodos y relaciones
+                      layout: gj(go.ForceDirectedLayout),
+                      mouseOver: function(e) {
+                        console.log(e.viewPoint.toString())
+                      }
+    });
 
   myDiagram.nodeTemplate = templateTable(gj);
   myDiagram.linkTemplate = templateLink(gj);
@@ -27,13 +32,16 @@ function iniciarDiagrama(){
       let node = e.object;
       if(node.key != undefined){
         // es un nodo
-        $("#idResultado").text(node.location);
+        $("#idResultado").text("xx: " + node.location);
+        sendCoordenadas(node.location, node.key);
       }else{
         // puede ser una relacion
         // no hacer nada
       }
-  });  
+  });
+
 }
+
 
 function crearDatos(){
 //los modelos del diagrama
@@ -63,7 +71,9 @@ function crearDatos(){
 
     return nodeDataArray
 }
+/*************************************************/
 
+/*************************************************/
 function createRelaciones(){
   //Creamos las relaciones
   var linkDataArray = [
